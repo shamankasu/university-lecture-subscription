@@ -1,0 +1,125 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 3px;
+}
+
+/* =========================
+   Primary
+========================= */
+
+.primary {
+  background-color: #2563eb;
+  color: #ffffff;
+
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
+}
+
+.primary:hover {
+  background-color: #1d4ed8;
+
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.28);
+}
+
+/* =========================
+   Secondary
+========================= */
+
+.secondary {
+  background-color: #ffffff;
+  color: #1e293b;
+
+  border: 1px solid #cbd5e1;
+}
+
+.secondary:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* =========================
+   Ghost
+========================= */
+
+.ghost {
+  background-color: transparent;
+  color: #475569;
+}
+
+.ghost:hover {
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+
+/* =========================
+   Size
+========================= */
+
+.sm {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.md {
+  min-height: 46px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+.lg {
+  min-height: 54px;
+  padding: 0 28px;
+  font-size: 16px;
+}
+
+/* =========================
+   Full Width
+========================= */
+
+.fullWidth {
+  width: 100%;
+}
+
+/* =========================
+   Disabled
+========================= */
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
