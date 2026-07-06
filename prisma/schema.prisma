@@ -1,0 +1,174 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String?
+  role         String   @default("general")
+  createdAt    DateTime @default(now())
+
+  progresses   UserProgress[]
+  favorites    Favorite[]
+  reviews      Review[]
+  subscriptions Subscription[]
+  payments     Payment[]
+}
+
+model University {
+  id          Int      @id @default(autoincrement())
+  name        String
+  location    String?
+  description String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+
+  teachers Teacher[]
+  courses  Course[]
+}
+
+model Teacher {
+  id           Int     @id @default(autoincrement())
+  universityId Int
+  name         String
+  department   String?
+  specialty    String?
+  profile      String?
+
+  university University @relation(fields: [universityId], references: [id])
+  courses    Course[]
+}
+
+model Course {
+  id           Int      @id @default(autoincrement())
+  universityId Int
+  teacherId    Int
+  title        String
+  category     String
+  level        String
+  description  String
+  thumbnailUrl String?
+  status       String   @default("draft")
+  createdAt    DateTime @default(now())
+
+  university University @relation(fields: [universityId], references: [id])
+  teacher    Teacher    @relation(fields: [teacherId], references: [id])
+
+  videos     Video[]
+  materials  Material[]
+  quizzes    Quiz[]
+  progresses UserProgress[]
+  favorites  Favorite[]
+  reviews    Review[]
+}
+
+model Video {
+  id        Int    @id @default(autoincrement())
+  courseId  Int
+  title     String
+  videoUrl  String
+  duration  Int?
+  orderNo   Int
+
+  course Course @relation(fields: [courseId], references: [id])
+  progresses UserProgress[]
+}
+
+model Material {
+  id         Int      @id @default(autoincrement())
+  courseId   Int
+  title      String
+  fileUrl    String
+  fileType   String
+  uploadedAt DateTime @default(now())
+
+  course Course @relation(fields: [courseId], references: [id])
+}
+
+model Quiz {
+  id              Int    @id @default(autoincrement())
+  courseId         Int
+  question         String
+  correctChoiceId  Int?
+  explanation      String?
+
+  course  Course @relation(fields: [courseId], references: [id])
+  choices QuizChoice[]
+}
+
+model QuizChoice {
+  id         Int    @id @default(autoincrement())
+  quizId     Int
+  choiceText String
+
+  quiz Quiz @relation(fields: [quizId], references: [id])
+}
+
+model UserProgress {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  courseId        Int
+  videoId         Int?
+  watchedSeconds  Int      @default(0)
+  completed       Boolean  @default(false)
+  lastWatchedAt   DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+  video  Video? @relation(fields: [videoId], references: [id])
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  planName  String
+  status    String   @default("active")
+  startDate DateTime @default(now())
+  endDate   DateTime?
+
+  user     User      @relation(fields: [userId], references: [id])
+  payments Payment[]
+}
+
+model Payment {
+  id             Int      @id @default(autoincrement())
+  userId          Int
+  subscriptionId  Int
+  amount          Int
+  paymentStatus   String
+  paidAt          DateTime @default(now())
+
+  user         User         @relation(fields: [userId], references: [id])
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+}
