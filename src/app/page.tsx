@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Button from "../components/Button";
 import styles from "./page.module.css";
+import SiteHeader from "../components/SiteHeader";
 
 const categories = [
   {
@@ -68,66 +69,7 @@ const courses = [
 export default function Home() {
   return (
     <div className={styles.page}>
-      {/* Header */}
-      <header className={styles.header}>
-        <div className={styles.headerInner}>
-          <Link href="/" className={styles.logo}>
-            <div className={styles.logoMark}>
-              U
-            </div>
-
-            <div>
-              <p className={styles.logoTitle}>
-                UniLecture
-              </p>
-
-              <p className={styles.logoSubtitle}>
-                大学講義サブスク
-              </p>
-            </div>
-          </Link>
-
-          <nav className={styles.nav}>
-            <Link
-              href="/courses"
-              className={styles.navLink}
-            >
-              講義を探す
-            </Link>
-
-            <Link
-              href="/universities"
-              className={styles.navLink}
-            >
-              大学から探す
-            </Link>
-
-            <Link
-              href="/plans"
-              className={styles.navLink}
-            >
-              料金プラン
-            </Link>
-          </nav>
-
-          <div className={styles.headerActions}>
-            <Button
-              href="/login"
-              variant="ghost"
-              size="sm"
-            >
-              ログイン
-            </Button>
-
-            <Button
-              href="/register"
-              size="sm"
-            >
-              無料で始める
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         {/* Hero */}
