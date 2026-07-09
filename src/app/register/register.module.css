@@ -1,0 +1,323 @@
+.page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(circle at top left, #dbeafe 0, transparent 32%),
+    radial-gradient(circle at top right, #ede9fe 0, transparent 30%),
+    #f8fafc;
+
+  color: #0f172a;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+  width: min(1200px, calc(100% - 48px));
+  height: 76px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerAction {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headerText {
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================
+   Main
+========================= */
+
+.main {
+  width: min(1200px, calc(100% - 48px));
+  min-height: calc(100vh - 76px);
+
+  margin: 0 auto;
+  padding: 56px 0 80px;
+
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  align-items: center;
+  gap: 80px;
+}
+
+/* =========================
+   Left Area
+========================= */
+
+.leftArea {
+  max-width: 650px;
+}
+
+.badge {
+  width: fit-content;
+
+  margin-bottom: 24px;
+  padding: 9px 15px;
+
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+
+  background-color: #eff6ff;
+  color: #1d4ed8;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.title {
+  margin: 0;
+
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+
+  font-weight: 800;
+}
+
+.title span {
+  display: block;
+
+  color: #2563eb;
+}
+
+.description {
+  margin: 24px 0 0;
+
+  color: #475569;
+
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.featureList {
+  margin-top: 38px;
+
+  display: grid;
+  gap: 16px;
+}
+
+.featureItem {
+  padding: 18px;
+
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+
+  background-color: rgba(255, 255, 255, 0.75);
+
+  backdrop-filter: blur(10px);
+}
+
+.featureIcon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background-color: #eff6ff;
+  color: #2563eb;
+
+  font-weight: 800;
+}
+
+.featureTitle {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.featureText {
+  margin: 6px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================
+   Register Card
+========================= */
+
+.cardArea {
+  width: 100%;
+}
+
+.registerCard {
+  padding: 36px;
+
+  backdrop-filter: blur(12px);
+}
+
+.cardHeader {
+  margin-bottom: 28px;
+
+  text-align: center;
+}
+
+.cardEyebrow {
+  margin: 0;
+
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.cardTitle {
+  margin: 8px 0 0;
+
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+
+.cardDescription {
+  margin: 10px 0 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================
+   Form
+========================= */
+
+.checkLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.checkLabel input {
+  width: 15px;
+  height: 15px;
+
+  margin-top: 4px;
+
+  flex-shrink: 0;
+
+  accent-color: #2563eb;
+}
+
+.checkLabel a {
+  margin: 0 2px;
+}
+
+.loginText {
+  margin: 24px 0 0;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.loginText a {
+  color: #2563eb;
+
+  font-weight: 800;
+}
+
+.loginText a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 950px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .leftArea {
+    max-width: none;
+
+    text-align: center;
+  }
+
+  .badge {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .featureList {
+    max-width: 600px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: left;
+  }
+
+  .cardArea {
+    max-width: 540px;
+
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .header,
+  .main {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .headerText {
+    display: none;
+  }
+
+  .main {
+    padding: 36px 0 60px;
+  }
+
+  .registerCard {
+    padding: 26px;
+
+    border-radius: 22px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+}
