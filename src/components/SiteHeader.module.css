@@ -1,0 +1,207 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+}
+
+.headerInner {
+  width: min(1200px, calc(100% - 48px));
+  height: 68px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoMark {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background-color: #2563eb;
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.logoTitle {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.logoSubtitle {
+  margin: 5px 0 0;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #2563eb;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =========================
+   Account
+========================= */
+
+.accountArea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accountButton {
+  padding: 6px 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+
+  background-color: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.accountButton:hover {
+  border-color: #bfdbfe;
+  background-color: #eff6ff;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: #dbeafe;
+  color: #1d4ed8;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.accountText {
+  display: grid;
+  gap: 3px;
+}
+
+.accountName {
+  color: #0f172a;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.accountEmail {
+  max-width: 150px;
+
+  overflow: hidden;
+
+  color: #64748b;
+
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutButton {
+  min-height: 38px;
+  padding: 0 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #f1f5f9;
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1000px) {
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .headerInner {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .accountEmail {
+    display: none;
+  }
+
+  .logoutButton {
+    display: none;
+  }
+}

@@ -13,9 +13,25 @@ export default function LoginPage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // 仮ログイン処理
-    // マイページを作ったら "/mypage" に変更する
+    
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email"));
+    
+    const storedUsers = localStorage.getItem("unilecture_users");
+    const users = storedUsers ? JSON.parse(storedUsers) : [];
+    
+    const foundUser = users.find(
+      (user: { email: string }) => user.email === email
+    );
+  
+    const loginUser = foundUser ?? {
+      name: email.split("@")[0],
+      email,
+      userType: "general",
+    };
+  
+    localStorage.setItem("unilecture_user", JSON.stringify(loginUser));
+  
     router.push("/");
   };
 
