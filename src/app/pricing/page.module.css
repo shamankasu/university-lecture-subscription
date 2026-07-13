@@ -1,0 +1,331 @@
+.main {
+  min-height: 100vh;
+  background-color: #f7f8fc;
+  color: #111827;
+}
+
+.hero {
+  padding: 72px 24px 160px;
+  text-align: center;
+  background: linear-gradient(120deg, #2563eb, #4f46e5);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #dbeafe;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.title {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(36px, 5vw, 52px);
+  line-height: 1.2;
+}
+
+.description {
+  margin: 20px auto 0;
+  color: #e0e7ff;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.planSection {
+  width: min(1120px, calc(100% - 48px));
+  margin: -100px auto 0;
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.planCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 28px 28px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.recommendedCard {
+  border: 2px solid #2563eb;
+  transform: translateY(-12px);
+}
+
+.badge,
+.recommendedBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  padding: 7px 18px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.recommendedBadge {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.planName {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.planDescription {
+  min-height: 54px;
+  margin: 14px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.priceArea {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 28px;
+}
+
+.price {
+  color: #111827;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.period {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.monthlyPrice {
+  margin: 8px 0 0;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 30px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.check {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.planButton {
+  display: block;
+  margin-top: auto;
+  padding: 14px 18px;
+  border: 1px solid #2563eb;
+  border-radius: 10px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.planButton:hover {
+  background-color: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.primaryButton {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.compareSection,
+.faqSection {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.faqSection {
+  padding-bottom: 96px;
+}
+
+.sectionHeading {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.sectionHeading p {
+  margin: 10px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.compareTable {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+}
+
+.compareTable th,
+.compareTable td {
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.compareTable th:first-child,
+.compareTable td:first-child {
+  text-align: left;
+}
+
+.compareTable th {
+  background-color: #eff6ff;
+  color: #1e3a8a;
+  font-size: 14px;
+}
+
+.compareTable td {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.compareTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.faqList {
+  display: flex;
+  max-width: 820px;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faqItem {
+  padding: 20px 22px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.faqItem summary {
+  color: #111827;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faqItem p {
+  margin: 16px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendedCard {
+    transform: none;
+  }
+
+  .planCard {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .planDescription {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 56px 20px 130px;
+  }
+
+  .planSection,
+  .compareSection,
+  .faqSection {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .planCard {
+    padding: 34px 22px 24px;
+  }
+
+  .price {
+    font-size: 34px;
+  }
+
+  .compareSection,
+  .faqSection {
+    padding-top: 64px;
+  }
+}

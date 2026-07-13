@@ -49,7 +49,7 @@ export default function SiteHeader() {
             大学から探す
           </Link>
 
-          <Link href="/plans" className={styles.navLink}>
+          <Link href="/pricing" className={styles.navLink}>
             料金プラン
           </Link>
         </nav>
