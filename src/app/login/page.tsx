@@ -1,40 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import type { FormEvent } from "react";
 
 import Button from "../../components/Button";
 import common from "../../styles/common.module.css";
+import LoginForm from "./LoginForm";
 import styles from "./login.module.css";
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    
-    const formData = new FormData(event.currentTarget);
-    const email = String(formData.get("email"));
-    
-    const storedUsers = localStorage.getItem("unilecture_users");
-    const users = storedUsers ? JSON.parse(storedUsers) : [];
-    
-    const foundUser = users.find(
-      (user: { email: string }) => user.email === email
-    );
-  
-    const loginUser = foundUser ?? {
-      name: email.split("@")[0],
-      email,
-      userType: "general",
-    };
-  
-    localStorage.setItem("unilecture_user", JSON.stringify(loginUser));
-  
-    router.push("/");
-  };
-
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -122,59 +93,7 @@ export default function LoginPage() {
               </p>
             </div>
 
-            <form className={common.form} onSubmit={handleSubmit}>
-              <label className={common.formGroup}>
-                <span className={common.label}>メールアドレス</span>
-
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="example@mail.com"
-                  className={common.input}
-                  required
-                />
-              </label>
-
-              <label className={common.formGroup}>
-                <span className={common.label}>パスワード</span>
-
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="パスワードを入力"
-                  className={common.input}
-                  required
-                />
-              </label>
-
-              <div className={styles.formOptions}>
-                <label className={styles.checkLabel}>
-                  <input type="checkbox" />
-                  <span>ログイン状態を保持する</span>
-                </label>
-
-                <Link href="/password-reset" className={common.textLink}>
-                  パスワードを忘れた方
-                </Link>
-              </div>
-
-              <Button type="submit" fullWidth size="lg">
-                ログイン
-              </Button>
-            </form>
-
-            <div className={common.divider}>
-              <span>または</span>
-            </div>
-
-            <Button variant="secondary" fullWidth>
-              Googleでログイン
-            </Button>
-
-            <p className={styles.registerText}>
-              アカウントをお持ちでない方は{" "}
-              <Link href="/register">新規登録</Link>
-            </p>
+            <LoginForm />
           </div>
         </section>
       </main>
