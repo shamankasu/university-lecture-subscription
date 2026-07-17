@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
 
+import {
+  getSessionUserAction,
+  logoutAction,
+} from "@/app/actions/auth";
 import Button from "./Button";
 import styles from "./SiteHeader.module.css";
 
@@ -13,20 +18,32 @@ type LoginUser = {
 
 export default function SiteHeader() {
   const [user, setUser] = useState<LoginUser | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("unilecture_user");
+    let isActive = true;
 
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    void getSessionUserAction()
+      .then((sessionUser) => {
+        if (isActive) {
+          setUser(sessionUser);
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setUser(null);
+        }
+      })
+      .finally(() => {
+        if (isActive) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isActive = false;
+    };
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("unilecture_user");
-    setUser(null);
-    window.location.href = "/";
-  };
 
   return (
     <header className={styles.header}>
@@ -55,7 +72,12 @@ export default function SiteHeader() {
         </nav>
 
         <div className={styles.headerActions}>
-          {user ? (
+          {isLoading ? (
+            <div
+              className={styles.accountSkeleton}
+              aria-label="アカウント情報を確認中"
+            />
+          ) : user ? (
             <div className={styles.accountArea}>
               <Link href="/mypage" className={styles.accountButton}>
                 <div className={styles.avatar}>
@@ -68,13 +90,9 @@ export default function SiteHeader() {
                 </div>
               </Link>
 
-              <button
-                type="button"
-                className={styles.logoutButton}
-                onClick={handleLogout}
-              >
-                ログアウト
-              </button>
+              <form action={logoutAction}>
+                <LogoutButton />
+              </form>
             </div>
           ) : (
             <>
@@ -90,5 +108,19 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
+  );
+}
+
+function LogoutButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      className={styles.logoutButton}
+      disabled={pending}
+    >
+      {pending ? "処理中…" : "ログアウト"}
+    </button>
   );
 }

@@ -13,13 +13,27 @@ model User {
   email        String   @unique
   passwordHash String?
   role         String   @default("general")
+  userType     String   @default("other")
   createdAt    DateTime @default(now())
 
-  progresses   UserProgress[]
-  favorites    Favorite[]
-  reviews      Review[]
+  progresses    UserProgress[]
+  favorites     Favorite[]
+  reviews       Review[]
   subscriptions Subscription[]
-  payments     Payment[]
+  payments      Payment[]
+  sessions      Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model University {
@@ -70,14 +84,14 @@ model Course {
 }
 
 model Video {
-  id        Int    @id @default(autoincrement())
-  courseId  Int
-  title     String
-  videoUrl  String
-  duration  Int?
-  orderNo   Int
+  id       Int    @id @default(autoincrement())
+  courseId Int
+  title    String
+  videoUrl String
+  duration Int?
+  orderNo  Int
 
-  course Course @relation(fields: [courseId], references: [id])
+  course     Course         @relation(fields: [courseId], references: [id])
   progresses UserProgress[]
 }
 
@@ -93,13 +107,13 @@ model Material {
 }
 
 model Quiz {
-  id              Int    @id @default(autoincrement())
-  courseId         Int
-  question         String
-  correctChoiceId  Int?
-  explanation      String?
+  id              Int     @id @default(autoincrement())
+  courseId        Int
+  question        String
+  correctChoiceId Int?
+  explanation     String?
 
-  course  Course @relation(fields: [courseId], references: [id])
+  course  Course       @relation(fields: [courseId], references: [id])
   choices QuizChoice[]
 }
 
@@ -112,13 +126,13 @@ model QuizChoice {
 }
 
 model UserProgress {
-  id              Int      @id @default(autoincrement())
-  userId          Int
-  courseId        Int
-  videoId         Int?
-  watchedSeconds  Int      @default(0)
-  completed       Boolean  @default(false)
-  lastWatchedAt   DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  courseId       Int
+  videoId        Int?
+  watchedSeconds Int      @default(0)
+  completed      Boolean  @default(false)
+  lastWatchedAt  DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id])
   course Course @relation(fields: [courseId], references: [id])
@@ -150,11 +164,11 @@ model Review {
 }
 
 model Subscription {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   userId    Int
   planName  String
-  status    String   @default("active")
-  startDate DateTime @default(now())
+  status    String    @default("active")
+  startDate DateTime  @default(now())
   endDate   DateTime?
 
   user     User      @relation(fields: [userId], references: [id])
@@ -163,11 +177,11 @@ model Subscription {
 
 model Payment {
   id             Int      @id @default(autoincrement())
-  userId          Int
-  subscriptionId  Int
-  amount          Int
-  paymentStatus   String
-  paidAt          DateTime @default(now())
+  userId         Int
+  subscriptionId Int
+  amount         Int
+  paymentStatus  String
+  paidAt         DateTime @default(now())
 
   user         User         @relation(fields: [userId], references: [id])
   subscription Subscription @relation(fields: [subscriptionId], references: [id])

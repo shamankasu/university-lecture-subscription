@@ -84,6 +84,28 @@
   gap: 8px;
 }
 
+.accountSkeleton {
+  width: 180px;
+  height: 42px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(90deg, #f1f5f9, #e2e8f0, #f1f5f9);
+  background-size: 200% 100%;
+
+  animation: account-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes account-loading {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
 /* =========================
    Account
 ========================= */
@@ -180,6 +202,11 @@
 .logoutButton:hover {
   background-color: #e2e8f0;
   color: #0f172a;
+}
+
+.logoutButton:disabled {
+  opacity: 0.55;
+  cursor: wait;
 }
 
 /* =========================
