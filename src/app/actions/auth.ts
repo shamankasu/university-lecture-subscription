@@ -48,6 +48,22 @@ function getText(formData: FormData, name: string) {
   return String(formData.get(name) ?? "").trim();
 }
 
+function getSafeReturnTo(formData: FormData) {
+  const returnTo = getText(formData, "returnTo");
+
+  try {
+    const url = new URL(returnTo || "/", "http://localhost");
+
+    if (url.origin !== "http://localhost") {
+      return "/";
+    }
+
+    return `${url.pathname}${url.search}${url.hash}`;
+  } catch {
+    return "/";
+  }
+}
+
 function isUniqueConstraintError(error: unknown) {
   return (
     typeof error === "object" &&
@@ -64,6 +80,7 @@ export async function loginAction(
   const email = getText(formData, "email").toLowerCase();
   const password = String(formData.get("password") ?? "");
   const remember = formData.get("remember") === "on";
+  const returnTo = getSafeReturnTo(formData);
   const values = { email, remember };
   const fieldErrors: LoginState["fieldErrors"] = {};
 
@@ -102,7 +119,7 @@ export async function loginAction(
     };
   }
 
-  redirect("/");
+  redirect(returnTo);
 }
 
 export async function registerAction(

@@ -13,7 +13,11 @@ import styles from "./login.module.css";
 
 const initialState: LoginState = {};
 
-export default function LoginForm() {
+type LoginFormProps = {
+  returnTo?: string;
+};
+
+export default function LoginForm({ returnTo = "/" }: LoginFormProps) {
   const [state, formAction, pending] = useActionState(
     loginAction,
     initialState,
@@ -22,6 +26,8 @@ export default function LoginForm() {
   return (
     <>
       <form className={common.form} action={formAction}>
+        <input type="hidden" name="returnTo" value={returnTo} />
+
         <label className={common.formGroup} htmlFor="login-email">
           <span className={common.label}>メールアドレス</span>
 

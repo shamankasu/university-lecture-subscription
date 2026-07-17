@@ -268,6 +268,7 @@ export type UserProgressOrderByWithRelationInput = {
 
 export type UserProgressWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  userId_courseId?: Prisma.UserProgressUserIdCourseIdCompoundUniqueInput
   AND?: Prisma.UserProgressWhereInput | Prisma.UserProgressWhereInput[]
   OR?: Prisma.UserProgressWhereInput[]
   NOT?: Prisma.UserProgressWhereInput | Prisma.UserProgressWhereInput[]
@@ -280,7 +281,7 @@ export type UserProgressWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
   video?: Prisma.XOR<Prisma.VideoNullableScalarRelationFilter, Prisma.VideoWhereInput> | null
-}, "id">
+}, "id" | "userId_courseId">
 
 export type UserProgressOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -382,6 +383,11 @@ export type UserProgressListRelationFilter = {
 
 export type UserProgressOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type UserProgressUserIdCourseIdCompoundUniqueInput = {
+  userId: number
+  courseId: number
 }
 
 export type UserProgressCountOrderByAggregateInput = {

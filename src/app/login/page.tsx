@@ -5,7 +5,18 @@ import common from "../../styles/common.module.css";
 import LoginForm from "./LoginForm";
 import styles from "./login.module.css";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams: Promise<{
+    returnTo?: string | string[];
+  }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const query = await searchParams;
+  const returnTo = Array.isArray(query.returnTo)
+    ? query.returnTo[0]
+    : query.returnTo;
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -93,7 +104,7 @@ export default function LoginPage() {
               </p>
             </div>
 
-            <LoginForm />
+            <LoginForm returnTo={returnTo} />
           </div>
         </section>
       </main>
