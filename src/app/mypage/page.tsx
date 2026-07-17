@@ -4,6 +4,10 @@ import { redirect } from "next/navigation";
 
 import Button from "@/components/Button";
 import SiteHeader from "@/components/SiteHeader";
+import {
+  getCatalogCourse,
+  getCourseProgressPercent,
+} from "@/lib/course-catalog";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
 import styles from "./mypage.module.css";
@@ -138,29 +142,58 @@ export default async function MyPage() {
 
               {recentProgress.length > 0 ? (
                 <div className={styles.progressList}>
-                  {recentProgress.map((progress) => (
-                    <Link
-                      key={progress.id}
-                      href={`/courses/${progress.course.id}`}
-                      className={styles.progressItem}
-                    >
-                      <div className={styles.courseMark}>U</div>
+                  {recentProgress.map((progress) => {
+                    const catalogCourse = getCatalogCourse(progress.course.id);
+                    const progressPercent = catalogCourse
+                      ? getCourseProgressPercent(
+                          catalogCourse,
+                          progress.watchedSeconds,
+                          progress.completed,
+                        )
+                      : progress.completed
+                        ? 100
+                        : 0;
 
-                      <div className={styles.courseInfo}>
-                        <span className={styles.universityName}>
-                          {progress.course.university.name}
-                        </span>
-                        <strong>{progress.course.title}</strong>
-                        <span className={styles.lastWatched}>
-                          最終学習日: {formatDate(progress.lastWatchedAt)}
-                        </span>
-                      </div>
+                    return (
+                      <Link
+                        key={progress.id}
+                        href={
+                          progress.completed
+                            ? `/courses/${progress.course.id}`
+                            : `/watch/${progress.course.id}`
+                        }
+                        className={styles.progressItem}
+                      >
+                        <div className={styles.courseMark}>U</div>
 
-                      <span className={styles.progressStatus}>
-                        {progress.completed ? "修了" : "続きから"}
-                      </span>
-                    </Link>
-                  ))}
+                        <div className={styles.courseInfo}>
+                          <span className={styles.universityName}>
+                            {progress.course.university.name}
+                          </span>
+                          <strong>{progress.course.title}</strong>
+                          <div
+                            className={styles.miniProgress}
+                            role="progressbar"
+                            aria-valuemin={0}
+                            aria-valuemax={100}
+                            aria-valuenow={progressPercent}
+                            aria-label={`${progress.course.title}の学習進捗`}
+                          >
+                            <span style={{ width: `${progressPercent}%` }} />
+                          </div>
+                          <span className={styles.lastWatched}>
+                            最終学習日: {formatDate(progress.lastWatchedAt)}
+                          </span>
+                        </div>
+
+                        <span className={styles.progressStatus}>
+                          {progress.completed
+                            ? "修了"
+                            : `${progressPercent}%・続きから`}
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className={styles.emptyState}>

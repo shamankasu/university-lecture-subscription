@@ -93,6 +93,8 @@ model Video {
 
   course     Course         @relation(fields: [courseId], references: [id])
   progresses UserProgress[]
+
+  @@unique([courseId, orderNo])
 }
 
 model Material {
@@ -137,6 +139,8 @@ model UserProgress {
   user   User   @relation(fields: [userId], references: [id])
   course Course @relation(fields: [courseId], references: [id])
   video  Video? @relation(fields: [videoId], references: [id])
+
+  @@unique([userId, courseId])
 }
 
 model Favorite {

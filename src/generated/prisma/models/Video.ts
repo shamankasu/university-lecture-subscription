@@ -253,6 +253,7 @@ export type VideoOrderByWithRelationInput = {
 
 export type VideoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  courseId_orderNo?: Prisma.VideoCourseIdOrderNoCompoundUniqueInput
   AND?: Prisma.VideoWhereInput | Prisma.VideoWhereInput[]
   OR?: Prisma.VideoWhereInput[]
   NOT?: Prisma.VideoWhereInput | Prisma.VideoWhereInput[]
@@ -263,7 +264,7 @@ export type VideoWhereUniqueInput = Prisma.AtLeast<{
   orderNo?: Prisma.IntFilter<"Video"> | number
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
   progresses?: Prisma.UserProgressListRelationFilter
-}, "id">
+}, "id" | "courseId_orderNo">
 
 export type VideoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -362,6 +363,11 @@ export type VideoListRelationFilter = {
 
 export type VideoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type VideoCourseIdOrderNoCompoundUniqueInput = {
+  courseId: number
+  orderNo: number
 }
 
 export type VideoCountOrderByAggregateInput = {
