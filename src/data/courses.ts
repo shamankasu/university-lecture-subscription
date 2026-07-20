@@ -47,7 +47,7 @@ export const courses: Course[] = [
   {
     id: 1,
     title: "はじめての人工知能",
-    university: "東京○○大学",
+    university: "早稲田大学",
     teacher: "山田 太郎 教授",
     category: "情報・AI",
     level: "初級",
@@ -121,7 +121,7 @@ export const courses: Course[] = [
   {
     id: 2,
     title: "現代社会を読み解く経済学",
-    university: "○○経済大学",
+    university: "横浜国立大学",
     teacher: "佐藤 花子 教授",
     category: "経済・経営",
     level: "初級",
@@ -189,7 +189,7 @@ export const courses: Course[] = [
   {
     id: 3,
     title: "人間の心を学ぶ心理学入門",
-    university: "○○総合大学",
+    university: "千葉大学",
     teacher: "鈴木 一郎 教授",
     category: "心理・教育",
     level: "初級",
@@ -252,7 +252,7 @@ export const courses: Course[] = [
   {
     id: 4,
     title: "情報工学のためのデータベース基礎",
-    university: "東京理工大学",
+    university: "東京理科大学",
     teacher: "高橋 健 教授",
     category: "情報・AI",
     level: "中級",
@@ -320,7 +320,7 @@ export const courses: Course[] = [
   {
     id: 5,
     title: "機械工学概論",
-    university: "○○工業大学",
+    university: "東京理科大学",
     teacher: "田中 誠 教授",
     category: "理学・工学",
     level: "初級",
@@ -376,7 +376,7 @@ export const courses: Course[] = [
   {
     id: 6,
     title: "法律学入門",
-    university: "○○法科大学",
+    university: "明治大学",
     teacher: "伊藤 亮 教授",
     category: "法律・政治",
     level: "初級",
@@ -432,7 +432,7 @@ export const courses: Course[] = [
   {
     id: 7,
     title: "英語で学ぶ異文化コミュニケーション",
-    university: "国際○○大学",
+    university: "早稲田大学",
     teacher: "中村 エリ 教授",
     category: "語学・文化",
     level: "中級",
@@ -488,7 +488,7 @@ export const courses: Course[] = [
   {
     id: 8,
     title: "経営戦略とマーケティング",
-    university: "○○経営大学",
+    university: "慶應義塾大学",
     teacher: "森 直人 教授",
     category: "経済・経営",
     level: "中級",
